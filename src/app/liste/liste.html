@@ -9,9 +9,15 @@
   <div class="dropdown-wrapper">
     <label for="profile-select" class="dropdown-label">Wähle ein Stundenplan-Profil:</label>
 
-    <select id="profile-select" class="full-width-dropdown">
-      <option value="" disabled selected>Noch keine Profile vorhanden...</option>
+    <select (change)="onProfileSelect($event)" class="custom-select">
+      <option value="">-- Bitte wählen --</option>
+
+      <option *ngFor="let profile of profiles; trackBy: trackByProfileId" [value]="profile.id">
+        {{ profile.name }}
+      </option>
     </select>
+
+
 
     <p class="info-text">Sobald du Profile erstellst, werden sie in dieser Liste angezeigt.</p>
   </div>

@@ -7,28 +7,27 @@
   </div>
 
   <div class="login-wrapper">
-    <form class="login-form">
-      <div class="form-group">
-        <label for="role-select" class="form-label">Ich bin ein/e:</label>
-        <select id="role-select" class="form-input select-input">
-          <option value="schueler" selected>Schüler / Schülerinf</option>
-          <option value="lehrer">Lehrer / Lehrerin</option>
-        </select>
-      </div>
+    <div class="login-form"> <div class="form-group">
+      <label for="role-select" class="form-label">Ich bin ein/e:</label>
+      <select #roleSelect id="role-select" class="form-input select-input">
+        <option value="Schüler" selected>Schüler / Schülerin</option>
+        <option value="Lehrer">Lehrer / Lehrerin</option>
+      </select>
+    </div>
 
       <div class="form-group">
         <label for="username" class="form-label">Benutzername oder E-Mail:</label>
-        <input type="text" id="username" class="form-input" placeholder="z.B. max.mustermann">
+        <input #usernameInput type="text" id="username" class="form-input" placeholder="z.B. max.mustermann" required>
       </div>
 
       <div class="form-group">
         <label for="password" class="form-label">Passwort:</label>
-        <input type="password" id="password" class="form-input" placeholder="••••••••">
+        <input type="password" id="password" class="form-input" placeholder="••••••••" required>
       </div>
 
-      <button type="submit" class="btn-submit">
-        Login
+      <button type="button" (click)="handleLogin(roleSelect.value, usernameInput.value)" class="btn-submit">
+        Login & Profil erstellen
       </button>
-    </form>
+    </div>
   </div>
 </div>
