@@ -1,0 +1,99 @@
+/* Globale Stile & Zurücksetzen von Standardabständen */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #121212; /* Dunkler Hintergrund */
+  color: #ffffff; /* Weißer Text */
+  line-height: 1.6;
+}
+
+/* Header Styling */
+header {
+  background-color: #1a1a1a; /* Etwas helleres Schwarz */
+  border-bottom: 3px solid #ff6600; /* Orangefarbene Trennlinie */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Seitentitel */
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+.logo span {
+  color: #ff6600; /* "Untis" wird orange */
+}
+
+/* Navigations-Buttons */
+.nav-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  text-decoration: none;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Liste Button (Outline) */
+.btn-list {
+  color: #ff6600;
+  border: 2px solid #ff6600;
+  background-color: transparent;
+}
+
+.btn-list:hover {
+  background-color: #ff6600;
+  color: #b8b8b8;
+}
+
+/* Login Button (Gefüllt) */
+.btn-login {
+  background-color: #ff6600;
+  color: #121212;
+  border: 2px solid #ff6600;
+}
+
+.btn-login:hover {
+  background-color: #e05500;
+  border-color: #e05500;
+  color: #ffffff;
+}
+
+/* Hauptinhalt */
+main {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  color: #e05500;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+p {
+  color: #d6d6d6;
+  font-size: 18px;
+}

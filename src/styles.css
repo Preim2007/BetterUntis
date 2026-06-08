@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  background-color: #121212;
+  margin: 0;
+}
+/* Kommt in die src/styles.css */
+
+/* ... (Hier dein bisheriges Header- und Button-Styling einfügen) ... */
+
+/* Styling für den neuen Home-Button */
+.btn-home {
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  background-color: transparent;
+}
+
+.btn-home:hover {
+  background-color: #ffffff;
+  color: #121212;
+}
+
+/* Cursor-Form für das klickbare Logo */
+.logo {
+  cursor: pointer;
+}/* You can add global styles to this file, and also import other style files */
