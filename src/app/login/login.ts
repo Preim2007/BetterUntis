@@ -1,11 +1,19 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router'; // <-- Das importieren
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink], // <-- Das hier eintragen
+  imports: [],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
-export class Login { }
+export class Login {
+
+  constructor(private router: Router) {}
+
+  goHome() {
+    this.router.navigate(['/']);
+  }
+
+}

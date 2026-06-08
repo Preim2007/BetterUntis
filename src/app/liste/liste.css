@@ -1,34 +1,92 @@
+/* Container-Styling */
 .page-container {
   padding: 20px;
-  max-width: 800px;
-  margin: 60px auto;
-  text-align: center;
+  max-width: 800px; /* Perfekte Breite für ein Formular/Dropdown */
+  margin: 40px auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
 }
 
+/* Header-Bereich */
+.header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  border-bottom: 2px solid #2a2a2a;
+  padding-bottom: 15px;
+}
+
+.page-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0;
+  color: #ffffff;
+}
+
+/* Zurück-Button */
 .btn-back {
   display: inline-block;
-  margin-bottom: 20px;
   padding: 10px 20px;
   color: #ff6600;
   border: 2px solid #ff6600;
+  background: none;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 6px;
   font-weight: bold;
+  font-family: inherit;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease-in-out;
 }
 
 .btn-back:hover {
   background-color: #ff6600;
   color: #121212;
+  box-shadow: 0 0 15px rgba(255, 102, 0, 0.4);
 }
 
-h2 {
-  color: #ffffff;
-  font-size: 28px;
-  margin-bottom: 10px;
+/* Dropdown-Bereich */
+.dropdown-wrapper {
+  background-color: #1a1a1a;
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid #2a2a2a;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
-.status-text {
+.dropdown-label {
+  display: block;
+  margin-bottom: 12px;
   color: #aaaaaa;
+  font-size: 15px;
+}
+
+/* Die weiße Dropdown-Liste */
+.full-width-dropdown {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 16px;
+  font-family: inherit;
+  background-color: #ffffff; /* Strahlend weißer Hintergrund */
+  color: #121212;            /* Dunkler Text für perfekten Kontrast */
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+  cursor: pointer;
+  outline: none;
+  font-weight: 500;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+}
+
+.full-width-dropdown:focus {
+  border-color: #ff6600; /* Orangefarbener Rahmen beim Anklicken */
+  box-shadow: 0 0 10px rgba(255, 102, 0, 0.3);
+}
+
+/* Info-Text unter dem Dropdown */
+.info-text {
+  margin-top: 15px;
+  color: #666666;
+  font-size: 13px;
+  font-style: italic;
 }

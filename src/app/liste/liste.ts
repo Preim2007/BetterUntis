@@ -1,11 +1,21 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router'; // <-- Das importiert die Link-Logik
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-liste',
   standalone: true,
-  imports: [RouterLink], // <-- Das schaltet den Router für dein HTML frei
+  imports: [],
   templateUrl: './liste.html',
   styleUrl: './liste.css'
 })
-export class Liste { } // Oder falls du sie "ListeComponent" genannt hast, den Klassennamen so lassen
+export class Liste {
+
+  // Der Constructor holt den Router in die Komponente
+  constructor(private router: Router) {}
+
+  // Diese Funktion MUSS exakt so heißen wie im HTML
+  goHome() {
+    this.router.navigate(['/']);
+  }
+
+}
