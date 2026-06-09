@@ -1,0 +1,109 @@
+<div class="page-container">
+  <div class="header-actions">
+    <button (click)="goBack()" class="btn-back">← Zurück zur Liste</button>
+    <h2 class="page-title">Profil</h2>
+  </div>
+
+  @if (!isUnlocked) {
+    <div class="profile-card password-gate">
+      <h3>🔒 Profil geschützt</h3>
+      <p class="gate-info">Möchtest du die Daten für <strong>{{ profileData.name }}</strong> bearbeiten oder nur ansehen?</p>
+
+      <div class="form-group">
+        <input
+          type="password"
+          [(ngModel)]="inputPassword"
+          placeholder="Profil-Passwort zum Bearbeiten"
+          class="form-input text-center"
+          (keyup.enter)="verifyPassword()" />
+      </div>
+
+      @if (passwordError) {
+        <p class="error-text">Falsches Passwort! Versuche es erneut.</p>
+      }
+
+      <div class="button-group">
+        <button (click)="verifyPassword()" class="btn-unlock">Freischalten & Bearbeiten</button>
+        <button (click)="viewInfoOnly()" class="btn-view">ℹ️ Nur Informationen ansehen</button>
+      </div>
+    </div>
+  }
+
+  @if (isUnlocked) {
+    <div class="profile-card">
+
+      @if (isReadOnly) {
+        <p class="status-readonly">ℹ️ Reiner Info-Modus (Schreibgeschützt)</p>
+      } @else {
+        <p class="status-unlocked">🔓 Bearbeitungsmodus aktiv</p>
+      }
+
+      <div class="avatar-container">
+        <img
+          [src]="profileData.avatarUrl ? profileData.avatarUrl : defaultAvatar"
+          alt="Profilbild"
+          class="profile-avatar" />
+      </div>
+
+      @if (!isReadOnly) {
+        <div class="form-group avatar-input-group">
+          <label>Profilbild-Link (Internet-URL):</label>
+          <input
+            type="text"
+            [(ngModel)]="profileData.avatarUrl"
+            class="form-input"
+            placeholder="https://beispiel.de/bild.jpg" />
+        </div>
+      }
+
+      <div class="form-group">
+        <label>Vorname:</label>
+        <input type="text" [(ngModel)]="profileData.name" [disabled]="isReadOnly" class="form-input" />
+      </div>
+
+      <div class="form-group">
+        <label>Nachname:</label>
+        <input type="text" [(ngModel)]="profileData.nachname" [disabled]="isReadOnly" class="form-input" placeholder="Kein Nachname eingetragen" />
+      </div>
+
+      <div class="form-group">
+        <label>Klasse:</label>
+        <input type="text" [(ngModel)]="profileData.klasse" [disabled]="isReadOnly" class="form-input" placeholder="Keine Klasse eingetragen" />
+      </div>
+
+      <div class="form-group">
+        <label>Rolle:</label>
+        <select [(ngModel)]="profileData.rolle" [disabled]="isReadOnly" class="form-input">
+          <option value="Schüler">Schüler</option>
+          <option value="Lehrer">Lehrer</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Schüler-ID / Lehrer-ID:</label>
+        <input type="text" [(ngModel)]="profileData.schuelerLehrerId" [disabled]="isReadOnly" class="form-input" placeholder="- Keine ID -" />
+      </div>
+
+      <div class="form-group">
+        <label>Klassenzimmer-Nummer:</label>
+        <input type="text" [(ngModel)]="profileData.klassenzimmerNummer" [disabled]="isReadOnly" class="form-input" placeholder="Kein Raum zugewiesen" />
+      </div>
+
+      <div class="form-group">
+        <label>Hobby:</label>
+        <input type="text" [(ngModel)]="profileData.hobby" [disabled]="isReadOnly" class="form-input" placeholder="Keine Hobbys angegeben" />
+      </div>
+
+      @if (!isReadOnly) {
+        <div class="form-group" style="border-top: 1px dashed #ccc; padding-top: 15px; margin-top: 20px;">
+          <label style="color: #d9534f;">🔒 Profil-Passwort festlegen/ändern:</label>
+          <input type="text" [(ngModel)]="profileData.passwort" class="form-input" placeholder="Neues Passwort eintragen" />
+        </div>
+
+        <button (click)="saveChanges()" class="btn-primary" style="margin-top: 20px; width: 100%;">
+          💾 Änderungen in Firebase speichern
+        </button>
+      }
+    </div>
+  }
+</div>

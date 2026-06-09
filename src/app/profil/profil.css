@@ -1,0 +1,165 @@
+/* Container und Karten-Styling */
+.profile-card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+.password-gate {
+  text-align: center;
+  border-top: 4px solid #ff9800;
+}
+
+/* HIER NEU: Profilbild Styling */
+.avatar-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.profile-avatar {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%; /* Macht das Bild kreisrund */
+  object-fit: cover; /* Verhindert das Verzerren des Bildes */
+  border: 4px solid #ff9800; /* Schicker oranger Rahmen um das Bild */
+  box-shadow: 0 4px 10px rgba(230, 126, 34, 0.2);
+}
+
+.avatar-input-group {
+  margin-bottom: 25px !important;
+  border-bottom: 1px dashed #eee;
+  padding-bottom: 15px;
+}
+
+/* Überschriften */
+.password-gate h3 {
+  color: #ff9800;
+  font-weight: bold;
+  font-size: 22px;
+  margin-top: 10px;
+}
+
+.gate-info {
+  color: #e67e22;
+  font-size: 15px;
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+.page-title {
+  color: #ff9800;
+  font-weight: bold;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.error-text {
+  color: #d9534f;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+/* Formular Felder Styling */
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #e67e22;
+  font-size: 14px;
+}
+
+.form-input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus {
+  border-color: #ff9800;
+  outline: none;
+}
+
+/* Buttons */
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.btn-unlock {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  flex: 1;
+  font-size: 14px;
+}
+
+.btn-view {
+  background-color: #e67e22;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  flex: 1;
+  font-size: 14px;
+}
+
+.btn-primary {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Status-Meldungen */
+.status-unlocked {
+  color: #ff9800;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  background-color: #fff3e0;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.status-readonly {
+  color: #e67e22;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  background-color: #fff3e0;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+/* Gesperrte Eingabefelder */
+.form-input:disabled {
+  background-color: #f8f9fa;
+  color: #d35400;
+  border-color: #dee2e6;
+  cursor: default;
+}
