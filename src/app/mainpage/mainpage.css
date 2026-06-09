@@ -97,3 +97,89 @@ p {
   color: #d6d6d6;
   font-size: 18px;
 }
+/* ==========================================
+   STUNDENPLAN-ERWEITERUNG (ORANGE-BLACK LOOK)
+   ========================================== */
+
+.stundenplan-section {
+  background-color: #1a1a1a;
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid #2a2a2a;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  margin-top: 40px;
+  max-width: 950px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stundenplan-title {
+  color: #ff6600;
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.stundenplan-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
+}
+
+.stundenplan-table th {
+  background-color: #ff6600;
+  color: #121212;
+  padding: 12px;
+  font-weight: bold;
+  font-size: 14px;
+  border: 1px solid #2a2a2a;
+}
+
+.stundenplan-table td {
+  padding: 14px 10px;
+  background-color: #252525;
+  border: 1px solid #333333;
+  font-size: 13px;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Zeitspalten-Design mit Stundenanzahl */
+.time-column {
+  background-color: #1f1f1f !important;
+  width: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hour-num {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.hour-time {
+  color: #ff6600;
+  font-size: 11px;
+}
+
+.stundenplan-table tbody tr:hover td {
+  background-color: #2d2d2d;
+}
+
+/* Freistunden-Look */
+.free-period {
+  color: #444444 !important;
+  font-style: italic;
+  background-color: #1e1e1e !important;
+}

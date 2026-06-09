@@ -8,5 +8,39 @@
 
 <main>
   <h1>Willkommen bei BetterUntis</h1>
-  <p>Ein modernes, orange-schwarzes Design für deine Stundenplan-Übersicht.</p>
+  <p>Ein modernes, übersichtliches Tool für Ihre Schule!</p>
+
+  <div class="stundenplan-section">
+    <h2 class="stundenplan-title">📅 Aktueller Stundenplan 4AHITM</h2>
+
+    <div class="table-responsive">
+      <table class="stundenplan-table">
+        <thead>
+        <tr>
+          <th>Stunde / Zeit</th>
+          <th>Mo. 8</th>
+          <th>Di. 9</th>
+          <th>Mi. 10</th>
+          <th>Do. 11</th>
+          <th>Fr. 12</th>
+        </tr>
+        </thead>
+        <tbody>
+          @for (zeit of zeitSlots; track zeit; let idx = $index) {
+            <tr>
+              <td class="time-column">
+                <span class="hour-num">{{ idx + 1 }}</span>
+                <span class="hour-time">{{ zeit }}</span>
+              </td>
+              <td [class.free-period]="stundenplan[zeit].mo === 'Freistunde'">{{ stundenplan[zeit].mo }}</td>
+              <td [class.free-period]="stundenplan[zeit].di === 'Freistunde'">{{ stundenplan[zeit].di }}</td>
+              <td [class.free-period]="stundenplan[zeit].mi === 'Freistunde'">{{ stundenplan[zeit].mi }}</td>
+              <td [class.free-period]="stundenplan[zeit].do === 'Freistunde'">{{ stundenplan[zeit].do }}</td>
+              <td [class.free-period]="stundenplan[zeit].fr === 'Freistunde'">{{ stundenplan[zeit].fr }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
 </main>
