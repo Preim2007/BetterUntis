@@ -35,15 +35,18 @@ export class Profil implements OnInit {
 
   defaultAvatar = 'https://cdn-icons-png.flaticon.com/512/149/149071.png';
 
+  // Hilfsvariable für das Formular, um den reinen Vornamen sauber zu binden
+  vornameEingabe = '';
+
   profileData: any = {
-    name: '',
+    name: '', // In Firebase entspricht das dem Anzeigenamen (Liste)
     nachname: '',
     klasse: '',
     rolle: 'Schüler',
     schuelerLehrerId: '',
     klassenzimmerNummer: '',
     hobby: '',
-    passwort: '', // Wird hier für das Formular bereitgehalten
+    passwort: '',
     avatarUrl: ''
   };
 
@@ -65,15 +68,27 @@ export class Profil implements OnInit {
       if (docSnap.exists()) {
         const data = docSnap.data();
 
+        let extrahierterVorname = data['name'] || '';
+        let extrahierterNachname = data['nachname'] || '';
+
+        // Falls im Namensfeld bereits Vor- und Nachname zusammenstehen, trennen wir es fürs Formular auf
+        if (extrahierterVorname.includes(' ') && !extrahierterNachname) {
+          const teile = extrahierterVorname.split(' ');
+          extrahierterVorname = teile[0];
+          extrahierterNachname = teile.slice(1).join(' ');
+        }
+
+        this.vornameEingabe = extrahierterVorname;
+
         this.profileData = {
           name: data['name'] || '',
-          nachname: data['nachname'] || '',
+          nachname: extrahierterNachname,
           klasse: data['klasse'] || '',
           rolle: data['rolle'] || 'Schüler',
           schuelerLehrerId: data['schuelerLehrerId'] || '',
           klassenzimmerNummer: data['klassenzimmerNummer'] || '',
           hobby: data['hobby'] || '',
-          passwort: data['passwort'] || '', // Lädt das Passwort direkt aus Firebase!
+          passwort: data['passwort'] || '',
           avatarUrl: data['avatarUrl'] || ''
         };
         this.cdr.detectChanges();
@@ -84,36 +99,23 @@ export class Profil implements OnInit {
   }
 
   verifyPassword() {
-    // 1. Eingabe sichern und komplett in Kleinbuchstaben umwandeln
     const eingegeben = this.inputPassword ? this.inputPassword.trim().toLowerCase() : '';
 
-    // 2. Den Namen aus Firebase holen, sichern und komplett in Kleinbuchstaben umwandeln
-    const nameAlsPasswort = this.profileData && this.profileData.name
-      ? this.profileData.name.trim().toLowerCase()
-      : '';
+    // Wir nutzen die saubere vornameEingabe als Fallback-Passwort, falls in Firebase keins existiert
+    const nameAlsPasswort = this.vornameEingabe ? this.vornameEingabe.trim().toLowerCase() : '';
+    const firebasePasswort = this.profileData && this.profileData.passwort ? this.profileData.passwort.trim().toLowerCase() : '';
 
-    // 3. Das Passwort aus Firebase holen (falls vorhanden) und in Kleinbuchstaben umwandeln
-    const firebasePasswort = this.profileData && this.profileData.passwort
-      ? this.profileData.passwort.trim().toLowerCase()
-      : '';
-
-    // 4. Wenn in Firebase ein Passwort drin steht, nimm das. Ansonsten nimm den Namen.
     const loesung = (firebasePasswort !== '') ? firebasePasswort : nameAlsPasswort;
 
     console.log('--- DER ULTIMATIVE CHECK ---');
     console.log('Deine Eingabe im Feld:', eingegeben);
-    console.log('Name des Profils (klein):', nameAlsPasswort);
-    console.log('Passwort in Firebase (klein):', firebasePasswort ? firebasePasswort : '- KEINS VORHANDEN -');
-    console.log('Das System erwartet deshalb exakt:', loesung);
+    console.log('Erwartete Lösung:', loesung);
 
-    // 5. Der finale Vergleich (egal ob Groß- oder Kleinschreibung!)
     if (eingegeben === loesung && loesung !== '') {
-      console.log('✅ ERFOLG! Formular wird geöffnet.');
       this.isUnlocked = true;
       this.isReadOnly = false;
       this.passwordError = false;
     } else {
-      console.log('❌ FEHLGESCHLAGEN! Passwort oder Name stimmt nicht überein.');
       this.passwordError = true;
       this.isUnlocked = false;
     }
@@ -129,22 +131,38 @@ export class Profil implements OnInit {
 
   async saveChanges() {
     try {
-      // Validierung: Der User sollte das Passwort nicht komplett leeren
       if (!this.profileData.passwort || this.profileData.passwort.trim() === '') {
         alert('Bitte vergib ein gültiges Passwort, bevor du speicherst!');
         return;
       }
 
+      const vName = this.vornameEingabe ? this.vornameEingabe.trim() : '';
+      const nName = this.profileData.nachname ? this.profileData.nachname.trim() : '';
+
+      // Verhindert doppeltes Zusammenkleben, falls im Formular schon der volle Name stand
+      const vollerName = (nName && !vName.includes(nName)) ? `${vName} ${nName}` : vName;
+
+      // Wir überschreiben alle gängigen Variablen, um deine Listenseite zu 100% zu treffen
+      const datenFuerFirebase = {
+        ...this.profileData,
+        name: vollerName,
+        vorname: vName,
+        nachname: nName,
+        displayName: vollerName
+      };
+
       const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
       const db = initializeFirestore(app, { experimentalForceLongPolling: true });
 
       const docRef = doc(db, 'profiles', this.profileId!);
+      await updateDoc(docRef, datenFuerFirebase);
 
-      // Sendet das gesamte Objekt (inklusive .passwort) an Firebase Firestore
-      await updateDoc(docRef, this.profileData);
+      alert('💾 Profil erfolgreich aktualisiert!');
 
-      alert('💾 Profil und Passwort erfolgreich in Firebase gespeichert!');
-      this.router.navigate(['/liste']);
+      this.router.navigate(['/liste']).then(() => {
+        window.location.reload();
+      });
+
     } catch (error) {
       console.error('Fehler beim Speichern:', error);
       alert('Fehler beim Aktualisieren der Daten.');

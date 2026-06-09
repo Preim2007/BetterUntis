@@ -7,7 +7,7 @@
   @if (!isUnlocked) {
     <div class="profile-card password-gate">
       <h3>🔒 Profil geschützt</h3>
-      <p class="gate-info">Möchtest du die Daten für <strong>{{ profileData.name }}</strong> bearbeiten oder nur ansehen?</p>
+      <p class="gate-info">Möchtest du die Daten für <strong>{{ vornameEingabe }}</strong> bearbeiten oder nur ansehen?</p>
 
       <div class="form-group">
         <input
@@ -58,7 +58,7 @@
 
       <div class="form-group">
         <label>Vorname:</label>
-        <input type="text" [(ngModel)]="profileData.name" [disabled]="isReadOnly" class="form-input" />
+        <input type="text" [(ngModel)]="vornameEingabe" [disabled]="isReadOnly" class="form-input" />
       </div>
 
       <div class="form-group">
