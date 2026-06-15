@@ -127,3 +127,54 @@
 .btn-submit:active {
   transform: translateY(1px);
 }
+
+/* --- Footer Styling --- */
+footer {
+  /* Passt sich dem dunklen Hintergrund an */
+  background-color: transparent;
+  /* Eine dezente graue Linie zur Abgrenzung vom Hauptinhalt */
+  border-top: 1px solid #333;
+  padding: 20px 20px;
+  margin-top: 50px;
+  color: #888;
+  font-family: sans-serif;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-content p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links a {
+  color: #888;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  /* Nutze hier exakt deinen Orange-Ton aus dem Header/Logo! */
+  color: #f37021;
+}
+
+/* Optional: Für größere Bildschirme nebeneinander anordnen */
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
